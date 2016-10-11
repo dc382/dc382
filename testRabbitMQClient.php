@@ -8,7 +8,10 @@ $client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 if (isset($argv[1]))
 {
   $user = $argv[1];
-  $passwd = sha1($argv[2]);
+  $options = [
+    'cost' => 12,
+  ];
+  $passwd = password_hash($argv[2], PASSWORD_BCRYPT, $options);
 }
 else
 {
